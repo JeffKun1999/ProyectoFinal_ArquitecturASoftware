@@ -1,14 +1,10 @@
-# main.py
-from models.model_shurima import ModelShurima
-from views.view_shurima import ViewShurima
-from controllers.controller_shurima import ControllerShurima
+import webbrowser
+from threading import Timer
+from app import app
 
-def main():
-    model = ModelShurima()
-    view = ViewShurima()
-    controller = ControllerShurima(model, view)
-
-    controller.update_view()
+def open_browser():
+    webbrowser.open_new('http://127.0.0.1:5000/')
 
 if __name__ == "__main__":
-    main()
+    Timer(1, open_browser).start()
+    app.run()
