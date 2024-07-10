@@ -1,7 +1,9 @@
 import sqlite3
 from flask import Flask, request, redirect, url_for, render_template
+from controllers.controller_shurima import ControllerShurima
 
 app = Flask(__name__)
+controller = ControllerShurima()
 
 # Ruta para la página principal
 @app.route('/')
@@ -27,7 +29,20 @@ def reserve():
               (name, date, time, type))
     conn.commit()
     conn.close()
+
+    # Publicar mensaje en RabbitMQ utilizando el controlador
+    reservation = {
+        'name': name,
+        'date': date,
+        'time': time,
+        'type': type
+    }
+    controller.add_reservation(reservation)
+
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    try:
+        app.run(debug=True)
+    finally:
+        controller.close_connection()
