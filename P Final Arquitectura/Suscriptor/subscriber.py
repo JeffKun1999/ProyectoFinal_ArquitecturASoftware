@@ -10,7 +10,7 @@ def send_email(reservation):
     password = "arfg qgqp flsy sfqp"
 
     message = MIMEMultipart("alternative")
-    message["Subject"] = "Detalles de la Reserva"
+    message["Subject"] = "Reserva realizada con éxito"
     message["From"] = sender_email
     message["To"] = receiver_email
 
@@ -20,6 +20,10 @@ def send_email(reservation):
     Fecha: {reservation['date']}
     Hora: {reservation['time']}
     Tipo de Espacio: {reservation['type']}
+    
+    
+    **Modificaciones a la reservas comunicarse con el servicio técnico.
+    **Recuerde que si requiere cancelar la reserva se deberá realizar con 48 horas de anticipación, contactando con servicio técnico.
     """
 
     part = MIMEText(text, "plain")
