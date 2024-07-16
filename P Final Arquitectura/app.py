@@ -40,9 +40,3 @@ def reserve():
     controller.add_reservation(reservation)
 
     return redirect(url_for('index'))
-
-if __name__ == "__main__":
-    try:
-        app.run(debug=True)
-    finally:
-        controller.close_connection()
