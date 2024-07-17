@@ -115,10 +115,9 @@
         <br>
         <label for="type">Tipo de Espacio:</label>
         <select id="type" name="type" required>
-            <option value="Parrillero">Parrillero</option>
-            <option value="Espacio de acampada">Espacio de acampada</option>
-            <option value="Espacio al aire libre">Espacio al aire libre</option>
-            <option value="Cancha de Futbol">Cancha de Futbol</option>
+            {% for lugar in lugares %}
+                <option value="{{ lugar.nombre }}">{{ lugar.nombre }}</option>
+            {% endfor %}
         </select>
         <br>
         <button type="submit">Reservar</button>
